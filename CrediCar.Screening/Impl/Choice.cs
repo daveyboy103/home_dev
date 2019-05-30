@@ -36,7 +36,7 @@ namespace CrediCar.Screening.Impl
 
             if (!questions.Any())
             {
-                throw new InvalidOperationException("Must supply at least one question");
+                throw new InvalidOperationException("Must supply at least one question.");
             }
         }
         public string UniqueId { get; }
