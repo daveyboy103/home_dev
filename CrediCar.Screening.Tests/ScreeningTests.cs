@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
 
 namespace CrediCar.Screening.Tests
@@ -22,6 +23,19 @@ namespace CrediCar.Screening.Tests
             Assert.AreNotEqual(guid1, guid2);
             Assert.IsNotNull(screening.QuestionResponses);
             Assert.AreEqual(0, screening.QuestionResponses.Count());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ShouldConstructorGuardAgainstNull()
+        {
+            new Impl.Screening(null);
+        }
+
+        [TestMethod]
+        public void ShouldRemoveChildResponsesWhenQuestionRemoved()
+        {
+
         }
     }
 }
