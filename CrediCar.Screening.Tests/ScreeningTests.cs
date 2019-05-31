@@ -35,7 +35,29 @@ namespace CrediCar.Screening.Tests
         [TestMethod]
         public void ShouldRemoveChildResponsesWhenQuestionRemoved()
         {
+            var sourceQuestions = DataFactory.GetSourceQuestions();
 
+            var screening = new Impl.Screening(sourceQuestions);
+
+            var firstQuestion = screening.GetNextQuestion();
+
+            Assert.IsNotNull(firstQuestion);
+            Assert.AreEqual(1, firstQuestion.QuestionId);
+
+            var firstQuestionResponse = new Impl.QuestionResponse(firstQuestion)
+            {
+                QuestionId = firstQuestion.QuestionId
+            };
+
+            firstQuestionResponse.AddChoice(firstQuestion.Choices.FirstOrDefault(x => x.Text == "European"));
+            screening.AddQuestionResponse(firstQuestionResponse);
+
+            var nextQuestion = screening.GetNextQuestion();
+            Assert.IsNotNull(nextQuestion);
+            Assert.AreEqual(4, nextQuestion.QuestionId);
+            Assert.AreEqual(3, nextQuestion.Choices.Count());
+            Assert.AreEqual("French", nextQuestion.Choices.FirstOrDefault().Text);
+            Assert.AreEqual("Spanish", nextQuestion.Choices.FirstOrDefault().Text);
         }
     }
 }

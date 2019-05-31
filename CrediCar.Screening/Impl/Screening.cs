@@ -18,7 +18,7 @@ namespace CrediCar.Screening.Impl
             QuestionResponses = new List<IQuestion>();
         }
 
-        public Screening(IEnumerable<ISourceQuestion> sourceQuestions)
+        public Screening(IEnumerable<ISourceQuestion> sourceQuestions) : this()
         {
             _sourceQuestions = sourceQuestions ?? throw new ArgumentNullException(nameof(sourceQuestions));
 
