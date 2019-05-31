@@ -2,7 +2,7 @@
 
 namespace CrediCar.Screening.Interfaces
 {
-    public interface IQuestion
+    public interface IQuestion : ISourceQuestion
     {
         IEnumerable<IChoice> SelectedChoices { get; }
 
